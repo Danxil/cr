@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "hapi": "^13.4.1"
+    "handlebars": "^4.0.5",
+    "hapi": "^13.4.1",
+    "inert": "^4.0.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "ts-loader": "^0.8.2",
+    "vision": "^4.1.0"
   },
   "devDependencies": {},
   "scripts": {

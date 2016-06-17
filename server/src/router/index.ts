@@ -12,5 +12,19 @@ export default class Router {
       handler: null,
       config: carsCtrl.list()
     });
+
+    server.register(require('inert'), (err) => {
+      if (err) throw err
+
+      server.route({
+        method: 'GET',
+        path: '/public/{param*}',
+        handler: {
+          directory: {
+            path: 'public'
+          }
+        }
+      });
+    })
   }
 }

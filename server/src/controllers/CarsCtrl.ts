@@ -1,5 +1,10 @@
 import * as Hapi from 'hapi';
-import BaseCtrl from "./BaseCtrl";
+import * as React from 'react';
+import * as ReactDOMServer from 'react-dom/server';
+
+import BaseCtrl from './BaseCtrl';
+
+import App from '../components/App';
 
 export default class CarsCtrl extends BaseCtrl {
   constructor(protected server:Hapi.Server) {
@@ -15,6 +20,9 @@ export default class CarsCtrl extends BaseCtrl {
 
 class CarsList implements Hapi.IRouteAdditionalConfigurationOptions {
   handler(req:Hapi.Request, reply:Hapi.IReply) {
-    reply(null, 'ololo');
+    var app = ReactDOMServer.renderToString(React.createElement(App))
+
+    reply.view('index', {app});
+
   }
 }
