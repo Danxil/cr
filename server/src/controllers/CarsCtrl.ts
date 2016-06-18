@@ -23,6 +23,5 @@ class CarsList implements Hapi.IRouteAdditionalConfigurationOptions {
     var app = ReactDOMServer.renderToString(React.createElement(App))
 
     reply.view('index', {app});
-
   }
 }

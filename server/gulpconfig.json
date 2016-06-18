@@ -1,0 +1,20 @@
+{
+  "bases": {
+    "dist": "./dist/",
+    "src": "src/"
+  },
+  "path": {
+    "serverTs": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "copy": [
+      "favicon.ico",
+      "src/**/*.json"
+    ],
+    "views": [
+      "src/**/*.html"
+    ],
+    "index": "src/index.html"
+  }
+}
