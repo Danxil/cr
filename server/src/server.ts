@@ -1,6 +1,6 @@
 /// <reference path="../typings/tsd.d.ts" />
-import * as Hapi from 'hapi';
-import Router from './router';
+import * as Hapi from 'hapi'
+import Router from './router'
 
 const server = new Hapi.Server();
 server.connection({port: 5000});
@@ -15,7 +15,7 @@ server.register(require('vision'), (err) => {
         relativeTo: __dirname,
         path: 'views'
     });
-})
+});
 
 server.start((err)=> {
     if (err) throw err;

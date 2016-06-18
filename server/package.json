@@ -27,7 +27,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp clean && gulp & webpack -w & tsc -w"
+    "build": "gulp clean && gulp & webpack -w & tsc -w",
+    "start": "cd ./dist && nodemon server.js --ext js,html"
   },
   "author": "",
   "license": "ISC"

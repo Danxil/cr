@@ -1,7 +1,7 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
-module.exports = {
+module.exports = [{
   entry: './src/client.ts',
   output: {
     filename: 'bundle.js',
@@ -18,4 +18,4 @@ module.exports = {
       }
     ]
   }
-}
+}]

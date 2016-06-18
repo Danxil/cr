@@ -2,7 +2,7 @@ import * as React from 'react';
 
 class App extends React.Component<any, any> {
   showAlert() {
-    alert(11)
+    alert(112)
   }
 
   render() {

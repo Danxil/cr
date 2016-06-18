@@ -1,5 +1,6 @@
 import * as Hapi from 'hapi';
 import CarsCtrl from '../controllers/CarsCtrl';
+import * as path from 'path';
 
 export default class Router {
 
@@ -21,7 +22,7 @@ export default class Router {
         path: '/public/{param*}',
         handler: {
           directory: {
-            path: 'public'
+            path: path.join(__dirname, '../public')
           }
         }
       });
