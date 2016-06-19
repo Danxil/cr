@@ -5,6 +5,11 @@
 </head>
 <body>
     <div id="react-container">{{{app}}}</div>
+    <script>
+        document.addEventListener("DOMNodeInserted", function(e) {
+            console.log('DOM changed')
+        }, false);
+    </script>
     <script src="/public/bundle.js"></script>
 </body>
 </html>

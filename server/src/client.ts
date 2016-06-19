@@ -1,9 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './components/App'
+import {Router, browserHistory} from 'react-router';
 
+import routes from './shared/routes';
+
+var props = {
+  history: browserHistory,
+  routes
+}
 
 ReactDOM.render(
-  React.createElement(App),
+  React.createElement(Router, props),
   document.getElementById('react-container')
 )
