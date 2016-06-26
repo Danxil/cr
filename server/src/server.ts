@@ -9,31 +9,32 @@ server.connection({port: 5000});
 new Routes(server);
 
 server.register(require('vision'), (err) => {
-    server.views({
-        engines: {
-            html: require('handlebars')
-        },
-        relativeTo: __dirname,
-        path: 'views'
-    });
+  server.views({
+    engines: {
+      html: require('handlebars')
+    },
+    relativeTo: __dirname,
+    path: 'views'
+  });
 });
 
 server.register(require('inert'), (err) => {
-    if (err) throw err;
+  if (err) throw err;
 
-    server.route({
-        method: 'GET',
-        path: '/public/{param*}',
-        handler: {
-            directory: {
-                path: path.join(__dirname, 'public')
-            }
-        }
-    });
+  server.route({
+    method: 'GET',
+    path: '/public/{param*}',
+    handler: {
+      directory: {
+        path: path.join(__dirname, 'public')
+      }
+    }
+  });
 });
 
-server.start((err)=> {
-    if (err) throw err;
 
-    console.log('Server running at:', server.info.uri);
+server.start((err)=> {
+  if (err) throw err;
+
+  console.log('Server running at:', server.info.uri);
 });

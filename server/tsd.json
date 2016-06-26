@@ -9,7 +9,7 @@
       "commit": "1315d46f8066eec8c197914da88e98629ebc2254"
     },
     "react/react.d.ts": {
-      "commit": "1315d46f8066eec8c197914da88e98629ebc2254"
+      "commit": "993f83fe84ba1381d006772dc3343e1b8d5304f3"
     },
     "node/node.d.ts": {
       "commit": "1315d46f8066eec8c197914da88e98629ebc2254"
@@ -28,6 +28,15 @@
     },
     "boom/boom.d.ts": {
       "commit": "e325b363f5ee9c72ebde49f1e783ae725f64b7e2"
+    },
+    "immutable/immutable.d.ts": {
+      "commit": "993f83fe84ba1381d006772dc3343e1b8d5304f3"
+    },
+    "react-redux/react-redux.d.ts": {
+      "commit": "993f83fe84ba1381d006772dc3343e1b8d5304f3"
+    },
+    "redux/redux.d.ts": {
+      "commit": "993f83fe84ba1381d006772dc3343e1b8d5304f3"
     }
   }
 }

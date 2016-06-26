@@ -1,5 +1,6 @@
 import * as Hapi from 'hapi';
 import AppCtrl from '../controllers/AppCtrl';
+import * as path from 'path'
 
 export default class Routes {
 
