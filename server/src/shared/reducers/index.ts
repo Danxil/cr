@@ -1,1 +1,1 @@
-export {CarsReduser} from './CarsReducer'
+export {CarsReduser as cars} from './CarsReducer'

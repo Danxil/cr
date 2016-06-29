@@ -34,7 +34,6 @@ export default class AppCtrl extends BaseCtrl {
         var provider = React.createElement(Provider, {store}, routerContext)
         
         var app = ReactDOMServer.renderToString(provider)
-        console.log(JSON.stringify(store.getState()))
         reply.view('index', {app, initialState: JSON.stringify(store.getState())});
       });
     }

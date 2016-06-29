@@ -14,15 +14,15 @@ export interface IDeleteCarAction extends baseActionCreator.IActionBase {
   id:string
 }
 
-export class CarsActionCreator {
-  static createCar:baseActionCreator.IActionCreatorBase = (car:ICar):ICreateCarAction => {
+export namespace CarsActionCreators {
+  export function createCar(car:ICar):ICreateCarAction {
     return {
       type: 'CREATE_CAR',
       car
     }
   }
 
-  static deleteCar:baseActionCreator.IActionCreatorBase = (id:string):IDeleteCarAction => {
+  export function deleteCar(id:string):IDeleteCarAction {
     return {
       type: 'DELETE_CAR',
       id
