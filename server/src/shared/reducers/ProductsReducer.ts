@@ -1,5 +1,6 @@
 import * as Immutable from 'immutable'
-import {ICreateProductAction, IDeleteProductAction, IProduct} from '../actions';
+import {ICreateProductAction, IDeleteProductAction} from '../actions';
+import {IProduct} from '../../models/Product';
 
 const defaultState:Immutable.List<IProduct> = Immutable.List<IProduct>();
 

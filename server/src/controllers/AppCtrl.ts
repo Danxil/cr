@@ -18,26 +18,20 @@ export default class AppCtrl extends BaseCtrl {
     super(server);
   }
 
-  index():Hapi.IRouteAdditionalConfigurationOptions {
-    function handler(req:Hapi.Request, reply:Hapi.IReply) {
-      var location = history.createLocation(req.url.path)
-      var reducer = combineReducers(reducers)
-      var store = createStore(reducer)
+  index(req:Hapi.Request, reply:Hapi.IReply) {
+    var location = history.createLocation(req.url.path)
+    var reducer = combineReducers(reducers)
+    var store = createStore(reducer)
 
-      match({routes, location}, (err:any, redirectLocation:any, renderProps:any) => {
-        if (err) throw err;
-        if (!renderProps) throw Boom.badRequest('This route is not exist');
+    match({routes, location}, (err:any, redirectLocation:any, renderProps:any) => {
+      if (err) throw err;
+      if (!renderProps) throw Boom.badRequest('This route is not exist');
 
-        var routerContext = React.createElement(RouterContext, renderProps)
-        var provider = React.createElement(Provider, {store}, routerContext)
+      var routerContext = React.createElement(RouterContext, renderProps)
+      var provider = React.createElement(Provider, {store}, routerContext)
 
-        var app = ReactDOMServer.renderToString(provider)
-        reply.view('index', {app, initialState: JSON.stringify(store.getState())});
-      });
-    }
-
-    return {
-      handler
-    };
+      var app = ReactDOMServer.renderToString(provider)
+      reply.view('index', {app, initialState: JSON.stringify(store.getState())});
+    });
   }
 }

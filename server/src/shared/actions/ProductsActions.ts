@@ -1,8 +1,5 @@
 import * as baseActionCreator from './index'
-
-export interface IProduct {
-  model:string
-}
+import {IProduct} from '../../models/Product';
 
 export interface ICreateProductAction extends baseActionCreator.IActionBase {
   type:string

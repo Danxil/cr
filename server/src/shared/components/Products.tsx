@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {IProduct, ICreateProductAction, IDeleteProductAction} from '../actions/ProductsActions';
+import {ICreateProductAction, IDeleteProductAction} from '../actions/ProductsActions';
+import {IProduct} from '../../models/Product';
 
 export interface IProductsState {
   products:IProduct[]

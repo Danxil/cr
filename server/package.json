@@ -20,6 +20,8 @@
     "history": "1.8.0",
     "immutable": "^3.8.1",
     "inert": "^4.0.0",
+    "lab": "^10.8.2",
+    "mocha": "^2.5.3",
     "pg": "^6.0.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
@@ -35,7 +37,7 @@
     "copy-webpack-plugin": "^3.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd ./dist && ../node_modules/lab/bin/lab ./tests/index.js",
     "build": "gulp clean && gulp & webpack -w & tsc -w",
     "start": "cd ./dist && nodemon server.js --ext js,html"
   },

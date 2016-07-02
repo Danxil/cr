@@ -4,11 +4,12 @@ import * as Hapi from 'hapi'
 import Routes from './routes'
 import * as path from 'path'
 import * as Sequelize from 'sequelize'
+import mocks from './mocks'
 
-const server = new Hapi.Server();
+const server:Hapi.Server = new Hapi.Server();
 server.connection({port: 5000});
 
-server.register([
+export default server.register([
   {
     register: require('hapi-sequelize'),
     options: [
@@ -50,6 +51,11 @@ server.register([
   })
   .then(()=> {
     new Routes(server);
+
+    return Promise.resolve()
+  })
+  .then(()=> {
+    return mocks(server.plugins['hapi-sequelize'].market)
   })
   .then(()=> {
     server.start((err)=> {
@@ -57,4 +63,11 @@ server.register([
 
       console.log('Server running at:', server.info.uri);
     });
+    
+    return server
+  })
+  .catch((error)=> {
+    console.log(error)
+
+    return server
   });

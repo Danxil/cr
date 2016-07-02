@@ -1,26 +1,31 @@
-import {Sequelize, Model} from 'sequelize';
+import {Sequelize} from 'sequelize';
 import {BaseRepo, IRepoBaseCRUD} from './BaseRepo';
-import {IProduct} from '../shared/actions/ProductsActions';
-import {IPromise} from 'hapi';
+import {IProduct} from '../models/Product';
 
-export default class ProductsRepo extends BaseRepo implements IRepoBaseCRUD {
-  constructor(protected db:Sequelize) {
-    super(db, 'Products');
+export class ProductsRepo extends BaseRepo<IProduct> implements IRepoBaseCRUD<IProduct> {
+  constructor(db:Sequelize) {
+    super(db, 'Product');
   }
   
-  list():IPromise<IProduct[]> {
+  list() {
     return this.model.findAll()
   }
-  
-  create() {
-    this.model.create()
+
+  create(product:IProduct) {
+    return this.model.create(product)
   }
 
-  get() {
-    this.model.findOne()
+  update(productId:string, product:IProduct) {
+    return this.model.update(product, {where: {id: productId}, returning: true}).then((response)=> {
+      return response[1][0]
+    })
   }
 
-  delete() {
-    this.model.drop()
+  get(productId:string) {
+    return this.model.findById(productId)
+  }
+
+  delete(productId:string) {
+    return this.model.destroy({where: {id: productId}})
   }
 }
