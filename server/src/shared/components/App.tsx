@@ -6,17 +6,10 @@ class App extends React.Component<void, void> {
     super();
   }
 
-  showAlert() {
-    alert(112);
-  }
-
   render() {
     return (
       <div>
-        <strong>App init</strong>
-        <button onClick={this.showAlert}>Alert</button>
-        <hr/>
-        <Link to="/">Home</Link> <Link to="/cars">Cars</Link> <Link to="/clients">Clients</Link>
+        <Link to="/">Home</Link> <Link to="/products">Products</Link> <Link to="/cart">Cart</Link>
         <hr/>
         {this.props.children}
       </div>

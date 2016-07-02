@@ -1,4 +1,4 @@
-export * from './CarsActions';
+export * from './ProductsActions';
 
 export interface IActionBase {
   type:string

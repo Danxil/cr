@@ -16,8 +16,6 @@ import routes from '../shared/routes';
 export default class AppCtrl extends BaseCtrl {
   constructor(protected server:Hapi.Server) {
     super(server);
-
-    this.server = server;
   }
 
   index():Hapi.IRouteAdditionalConfigurationOptions {
@@ -32,7 +30,7 @@ export default class AppCtrl extends BaseCtrl {
 
         var routerContext = React.createElement(RouterContext, renderProps)
         var provider = React.createElement(Provider, {store}, routerContext)
-        
+
         var app = ReactDOMServer.renderToString(provider)
         reply.view('index', {app, initialState: JSON.stringify(store.getState())});
       });

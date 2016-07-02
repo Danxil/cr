@@ -2,12 +2,12 @@ import * as React from 'react';
 import {Route} from 'react-router';
 
 import App from './components/App';
-import CarsContainer from './containers/CarsContainer';
-import Clients from './components/Clients';
+import ProductsContainer from './containers/ProductsContainer';
+import Cart from './components/Cart';
 
 export default (
   <Route path="/" component={App}>
-    <Route path="cars" component={CarsContainer}></Route>
-    <Route path="clients" component={Clients}></Route>
+    <Route path="products" component={ProductsContainer}></Route>
+    <Route path="cart" component={Cart}></Route>
   </Route>
 );
