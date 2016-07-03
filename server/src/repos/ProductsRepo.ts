@@ -11,6 +11,10 @@ export class ProductsRepo extends BaseRepo<IProduct> implements IRepoBaseCRUD<IP
     return this.model.findAll()
   }
 
+  get(productId:string) {
+    return this.model.findById(productId)
+  }
+
   create(product:IProduct) {
     return this.model.create(product)
   }
@@ -19,10 +23,6 @@ export class ProductsRepo extends BaseRepo<IProduct> implements IRepoBaseCRUD<IP
     return this.model.update(product, {where: {id: productId}, returning: true}).then((response)=> {
       return response[1][0]
     })
-  }
-
-  get(productId:string) {
-    return this.model.findById(productId)
   }
 
   delete(productId:string) {

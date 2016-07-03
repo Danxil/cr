@@ -17,32 +17,32 @@ export default class Routes {
 
     server.route({
       method: 'GET',
-      path: '/products',
+      path: '/api/products',
       handler: productsCtrl.list.bind(productsCtrl),
     });
 
     server.route({
       method: 'GET',
-      path: '/products/{productId}',
+      path: '/api/products/{productId}',
       handler: productsCtrl.get.bind(productsCtrl),
     });
 
     server.route({
       method: 'POST',
-      path: '/products',
+      path: '/api/products',
       handler: productsCtrl.create.bind(productsCtrl),
     });
 
 
     server.route({
       method: 'PUT',
-      path: '/products/{productId}',
+      path: '/api/products/{productId}',
       handler: productsCtrl.update.bind(productsCtrl),
     });
 
     server.route({
       method: 'DELETE',
-      path: '/products/{productId}',
+      path: '/api/products/{productId}',
       handler: productsCtrl.delete.bind(productsCtrl),
     });
   }

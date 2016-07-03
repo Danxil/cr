@@ -1,13 +1,19 @@
-import * as Immutable from 'immutable'
-import {ICreateProductAction, IDeleteProductAction} from '../actions';
+import {ICreateProductAction, IDeleteProductAction, IGetProductsActionSuccess} from '../actions';
 import {IProduct} from '../../models/Product';
+import * as _ from 'lodash';
 
-const defaultState:Immutable.List<IProduct> = Immutable.List<IProduct>();
+const defaultState:IProduct[] = [];
 
-export function ProductsReducer(state = defaultState, action:ICreateProductAction | IDeleteProductAction) {
+export function ProductsReducer(state = defaultState, action:any) {
   switch (action.type) {
+    case 'GET_PRODUCTS_SUCCESS': {
+      let products:IProduct[] = (<IGetProductsActionSuccess>action).result
+
+      return _.unionBy(state, products, 'id')
+    }
+
     case 'CREATE_PRODUCT': {
-      return state.concat((<ICreateProductAction>action).product)
+      return [].concat(state, (<ICreateProductAction>action).product)
     }
 
     case 'DELETE_PRODUCT': {

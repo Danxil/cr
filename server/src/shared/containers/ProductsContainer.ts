@@ -3,11 +3,18 @@ import {connect} from 'react-redux'
 import {ProductsActionCreators} from '../actions'
 import {Products, IProductsProps, IProductsState} from '../components/Products'
 
-function mapStateToProps(state):IProductsState {
+const PRELOAD = [
+  ProductsActionCreators.getProducts
+]
+
+function mapStateToProps(state) {
   return {products: state.products}
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ProductsActionCreators, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Products)
+
+var container = connect(mapStateToProps, mapDispatchToProps)(Products)
+
+export default container
