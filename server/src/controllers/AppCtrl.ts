@@ -8,6 +8,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 
 import promiseMiddleware from '../shared/libs/promiseMiddleware';
+import preloadsInit from '../libs/preloadsInit';
 import * as reducers from '../shared/reducers'
 
 import BaseCtrl from './BaseCtrl';
@@ -31,16 +32,11 @@ export default class AppCtrl extends BaseCtrl {
       var routerContext = React.createElement(RouterContext, renderProps)
       var provider = React.createElement(Provider, {store}, routerContext)
 
-      var resolves = renderProps.components.reduce((prev, current)=> {
-        return (current.preload ? current.preload() : [])
-          .concat((current.WrappedComponent ? current.WrappedComponent.preload() : []), prev)
-      }, [])
-
-      var promises = resolves.map((resolveItem)=> store.dispatch(resolveItem()))
-
-      Promise.all(promises).then(()=> {
+      preloadsInit(renderProps, store.dispatch).then(()=> {
         var app = ReactDOMServer.renderToString(provider)
         reply.view('index', {app, initialState: JSON.stringify(store.getState())});
+      }).catch((error)=> {
+        console.error(error)
       })
     });
   }

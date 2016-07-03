@@ -16,19 +16,16 @@ export interface IProductsProps extends RouteComponentProps<IProductRouteParams,
   getProducts():IGetProductsAction
   createProduct(product:IProduct):ICreateProductAction
   deleteProduct(id:string):IDeleteProductAction
+  preload:any
 }
 
 export class Products extends React.Component<IProductsProps, IProductsState> {
   constructor(public props:IProductsProps) {
     super()
 
-    Products.preload().forEach((item)=> item())
-  }
-
-  static preload = (params?, query?)=> {
-    return [
-      ProductsActionCreators.getProducts
-    ]
+    if (typeof window != 'undefined') {
+      this.props.preload.forEach((item)=> item())
+    }
   }
 
   render() {
