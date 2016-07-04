@@ -2,6 +2,7 @@ import * as baseActionCreator from './index'
 import {IProduct} from '../../models/Product';
 import {IPromise} from 'hapi';
 import * as fetch from 'isomorphic-fetch';
+import {productsAPI} from '../api'
 
 
 export interface IGetProductsAction extends baseActionCreator.IActionBase {
@@ -9,8 +10,8 @@ export interface IGetProductsAction extends baseActionCreator.IActionBase {
   promise:IPromise<IResponse>
 }
 
-
-export interface IGetProductsActionSuccess extends baseActionCreator.IActionBase {
+//Actions
+export interface IGetProductsSuccessAction extends baseActionCreator.IActionBase {
   type:string
   result:IProduct[]
 }
@@ -25,22 +26,35 @@ export interface IDeleteProductAction extends baseActionCreator.IActionBase {
   productId:string
 }
 
+//Action creators
+export interface IGetProductsActionCreator extends baseActionCreator.IActionBase {
+  ():IGetProductsSuccessAction
+}
+
+export interface ICreateProductActionCreator extends baseActionCreator.IActionBase {
+  (product:IProduct):ICreateProductAction
+}
+
+export interface IDeleteProductActionCreator extends baseActionCreator.IActionBase {
+  (productId:string):IDeleteProductAction
+}
+
 export namespace ProductsActionCreators {
-  export function getProducts():IGetProductsAction {
+  export function getProducts() {
     return {
       type: 'GET_PRODUCTS',
-      promise: fetch('http://localhost:5000/api/products')
+      promise: productsAPI.getProducts()
     }
   }
 
-  export function createProduct(product:IProduct):ICreateProductAction {
+  export function createProduct(product:IProduct) {
     return {
       type: 'CREATE_PRODUCT',
       product
     }
   }
 
-  export function deleteProduct(productId:string):IDeleteProductAction {
+  export function deleteProduct(productId:string) {
     return {
       type: 'DELETE_PRODUCT',
       productId

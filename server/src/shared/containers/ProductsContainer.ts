@@ -17,12 +17,12 @@ function mapDispatchToProps(dispatch) {
   var preload = PRELOAD().map((item)=> {
     return ()=> dispatch(item())
   })
-
+  
   return Object.assign({}, {preload}, bindActionCreators(ProductsActionCreators, dispatch))
 }
 
-var container = connect(mapStateToProps, mapDispatchToProps)(Products)
+var ProductsContainer = connect(mapStateToProps, mapDispatchToProps)(Products)
 
-container['preload'] = PRELOAD
+ProductsContainer['preload'] = PRELOAD
 
-export default container
+export default ProductsContainer

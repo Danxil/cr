@@ -1,21 +1,22 @@
 import * as React from 'react';
-import {ICreateProductAction, IDeleteProductAction, IGetProductsAction, ProductsActionCreators} from '../actions/ProductsActions';
+import {
+  ICreateProductActionCreator, IDeleteProductActionCreator, IGetProductsActionCreator
+} from '../actions/ProductsActions';
 import {IProduct} from '../../models/Product';
 import {RouteComponentProps} from 'react-router';
-import {IPromise} from "hapi";
+import ProductContainer from '../containers/ProductContainer';
+
+interface IProductRouteParams {
+}
 
 export interface IProductsState {
 }
 
-interface IProductRouteParams {
-
-}
-
 export interface IProductsProps extends RouteComponentProps<IProductRouteParams, any> {
   products:IProduct[]
-  getProducts():IGetProductsAction
-  createProduct(product:IProduct):ICreateProductAction
-  deleteProduct(id:string):IDeleteProductAction
+  getProducts:IGetProductsActionCreator
+  createProduct:ICreateProductActionCreator
+  deleteProduct:IDeleteProductActionCreator
   preload:any
 }
 
@@ -36,7 +37,9 @@ export class Products extends React.Component<IProductsProps, IProductsState> {
         <strong>Products !1111111111</strong>
         <ul>
           {products.map((product:IProduct)=>{
-            return <li key={product.id}>{product.name}</li>
+            return <li key={product.id}>
+              <ProductContainer product={product} />
+            </li>
           })}
         </ul>
       </div>

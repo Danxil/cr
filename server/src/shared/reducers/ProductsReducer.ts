@@ -1,4 +1,4 @@
-import {ICreateProductAction, IDeleteProductAction, IGetProductsActionSuccess} from '../actions';
+import {ICreateProductAction, IDeleteProductAction, IGetProductsSuccessAction} from '../actions';
 import {IProduct} from '../../models/Product';
 import * as _ from 'lodash';
 
@@ -7,7 +7,7 @@ const defaultState:IProduct[] = [];
 export function ProductsReducer(state = defaultState, action:any) {
   switch (action.type) {
     case 'GET_PRODUCTS_SUCCESS': {
-      let products:IProduct[] = (<IGetProductsActionSuccess>action).result
+      let products:IProduct[] = (<IGetProductsSuccessAction>action).result
 
       return _.unionBy(state, products, 'id')
     }
