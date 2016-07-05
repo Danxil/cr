@@ -1,13 +1,17 @@
 import {Sequelize} from 'sequelize';
 import {IProduct} from '../models/Product';
+import {IUser} from '../models/User';
+import {Model} from 'sequelize';
 
 export default function mocks(db:Sequelize) {
-  var Products = db.models['Product']
-  
+  var Product = db.models['Product']
+  var User = db.models['User']
+  var UserProduct = db.models['UserProduct']
+
   var promises = [];
   
   promises.push(
-    Products.bulkCreate(<IProduct[]>[
+    Product.bulkCreate(<IProduct[]>[
       {
         name: 'Product 1',
         price: 22.3
@@ -22,6 +26,27 @@ export default function mocks(db:Sequelize) {
       }
     ])
   )
-  
-  return promises;
+
+  promises.push(User.bulkCreate(<IUser[]>[
+    {
+      name: 'User 1'
+    }
+  ]))
+
+
+
+  return Promise.all(promises).then(()=> {
+    var promises2 = []
+
+    promises2.push((function () {
+      User.findOne({where: {id: 1}}).then((user)=> {
+        return Product.findOne({where: {id: 1}}).then((product)=> {return {product, user}})
+      }).then((obj)=> {
+
+        return obj.user.addProduct(obj.product)
+      })
+    })())
+
+    return promises2
+  })
 }

@@ -4,7 +4,6 @@ export class CartAPI {
   static instance:CartAPI
 
   constructor(private prefix:string) {
-    console.log(prefix)
   }
   
   addProductToCart(productId) {

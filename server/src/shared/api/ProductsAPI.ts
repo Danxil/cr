@@ -4,7 +4,6 @@ export class ProductsAPI {
   static instance:ProductsAPI
 
   constructor(private prefix:string) {
-    console.log(prefix)
   }
   
   getProducts() {

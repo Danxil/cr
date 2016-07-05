@@ -1,12 +1,14 @@
 import * as Hapi from 'hapi';
 import AppCtrl from '../controllers/AppCtrl';
 import ProductsCtrl from '../controllers/ProductsCtrl';
+import UsersCtrl from '../controllers/UsersCtrl';
 
 export default class Routes {
   constructor(server:Hapi.Server) {
     const appCtrl = new AppCtrl(server);
     const productsCtrl = new ProductsCtrl(server);
-    
+    const usersCtrl = new UsersCtrl(server);
+
     server.route({
       method: 'GET',
       path: '/{params*}',
@@ -42,6 +44,12 @@ export default class Routes {
       method: 'DELETE',
       path: '/api/products/{productId}',
       handler: productsCtrl.delete.bind(productsCtrl),
+    });
+
+    server.route({
+      method: 'GET',
+      path: '/api/user/{userId}/products',
+      handler: usersCtrl.getUserProducts.bind(usersCtrl),
     });
   }
 }

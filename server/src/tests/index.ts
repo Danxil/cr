@@ -8,10 +8,10 @@ const lab = exports.lab = Lab.script();
 
 var server:Server
 
-function getList() {
+function getListProduct() {
   var options = {
     method: 'GET',
-    url: '/products'
+    url: '/api/products'
   }
 
   return server.inject(options).then((response)=> {
@@ -23,10 +23,10 @@ function getList() {
   })
 }
 
-function getOne(productId) {
+function getOneProduct(productId) {
   var options = {
     method: 'GET',
-    url: '/products/' + productId
+    url: '/api/products/' + productId
   }
 
   return server.inject(options).then((response)=> {
@@ -41,7 +41,7 @@ function getOne(productId) {
 function getNotExisted(productId) {
   var options = {
     method: 'GET',
-    url: '/products/' + productId
+    url: '/api/products/' + productId
   }
 
   return server.inject(options).then((response)=> {
@@ -51,10 +51,10 @@ function getNotExisted(productId) {
   })
 }
 
-function create(newProduct) {
+function createProduct(newProduct) {
   var options = {
     method: 'POST',
-    url: '/products',
+    url: '/api/products',
     payload: newProduct
   }
 
@@ -69,10 +69,10 @@ function create(newProduct) {
   })
 }
 
-function update(productId, newProduct) {
+function updateProduct(productId, newProduct) {
   var options = {
     method: 'PUT',
-    url: '/products/2',
+    url: '/api/products/2',
     payload: newProduct
   }
 
@@ -87,11 +87,11 @@ function update(productId, newProduct) {
   })
 }
 
-function remove(productId) {
+function deleteProduct(productId) {
 
   var options = {
     method: 'DELETE',
-    url: '/products/' + productId,
+    url: '/api/products/' + productId,
   }
 
   return server.inject(options).then((response)=> {
@@ -103,6 +103,21 @@ function remove(productId) {
   })
 }
 
+function getUserProducts(userId) {
+  var options = {
+    method: 'GET',
+    url: '/api/user/' + userId + '/products'
+  }
+
+  return server.inject(options).then((response)=> {
+    var result = response.result
+
+    chai.expect(response.statusCode).to.eq(200);
+    chai.expect(result).to.be.instanceof(Array);
+    chai.expect(result).to.have.length(1);
+  })
+}
+
 lab.experiment('Test', ()=> {
   lab.before(()=> {
     return serverPromise.then((serverInst:Server)=> {
@@ -110,22 +125,28 @@ lab.experiment('Test', ()=> {
     })
   })
 
-  lab.test('products controller: get list', getList)
+  lab.experiment('products controller', ()=> {
+    lab.test('get. list', getListProduct)
 
-  lab.test('products controller: get one', getOne.bind(this, 2))
+    lab.test('get one', getOneProduct.bind(this, 2))
 
-  lab.test('products controller: create', create.bind(this, {
-    name: 'New product',
-    price: 1333
-  }))
+    lab.test('create', createProduct.bind(this, {
+      name: 'New product',
+      price: 1333
+    }))
 
-  lab.test('products controller: update', update.bind(this, 2, {
-    name: 'Product 2 new name',
-    id: 2,
-    price: 11
-  }))
+    lab.test('update', updateProduct.bind(this, 2, {
+      name: 'Product 2 new name',
+      id: 2,
+      price: 11
+    }))
 
-  lab.test('products controller: delete', remove.bind(this, 2))
+    lab.test('delete', deleteProduct.bind(this, 2))
+  })
+
+  lab.experiment('user controller', ()=> {
+    lab.test('get user products', getUserProducts.bind(this, 1))
+  })
 })
 
 

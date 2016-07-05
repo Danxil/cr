@@ -26,7 +26,7 @@ export default server.register([
   .then(()=> {
     return server.register(require('inert'), (err) => {
       if (err) throw err;
-
+      
       server.route({
         method: 'GET',
         path: '/public/{param*}',

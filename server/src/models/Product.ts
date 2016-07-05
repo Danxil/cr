@@ -6,7 +6,7 @@ export interface IProduct {
   price:number
 }
 
-export default function Product(sequelize:Sequelize, DataTypes:DataTypes) {
+export default function(sequelize:Sequelize, DataTypes:DataTypes) {
   return sequelize.define('Product', {
     name: DataTypes.STRING,
     price: DataTypes.FLOAT
