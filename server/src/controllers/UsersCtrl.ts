@@ -19,4 +19,20 @@ export default class UsersCtrl extends BaseCtrl {
       reply.response(response)
     })
   }
+
+  addUserProduct(req:Hapi.Request, reply:Hapi.IReply) {
+    this.usersRepo.addUserProduct(req.params['userId'], req.params['productId'])
+      .then(()=> this.usersRepo.getUserProducts(req.params['userId']))
+      .then((result:IProduct[])=> {
+        reply.response(result)
+      })
+  }
+
+  removeUserProduct(req:Hapi.Request, reply:Hapi.IReply) {
+    this.usersRepo.removeUserProduct(req.params['userId'], req.params['productId'])
+      .then(()=> this.usersRepo.getUserProducts(req.params['userId']))
+      .then((result:IProduct[])=> {
+        reply.response(result)
+      })
+  }
 }

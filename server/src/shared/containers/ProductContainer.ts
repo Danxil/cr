@@ -6,6 +6,9 @@ import {IProduct} from '../../models/Product';
 
 export interface IProductContainerOwnProps {
   product:IProduct
+  hideButtons?:boolean
+  inCart?:boolean
+  cartMode?:boolean
 }
 
 function mapStateToProps(state, ownProps:IProductContainerOwnProps) {
@@ -14,8 +17,9 @@ function mapStateToProps(state, ownProps:IProductContainerOwnProps) {
 
 function mapDispatchToProps(dispatch, ownProps:IProductContainerOwnProps) {
   var addProductToCart = CartActionCreators.addProductToCart.bind(this, ownProps.product.id)
+  var removeProductFromCart = CartActionCreators.removeProductFromCart.bind(this, ownProps.product.id)
 
-  return Object.assign({}, bindActionCreators({addProductToCart}, dispatch))
+  return Object.assign({}, bindActionCreators({addProductToCart, removeProductFromCart}, dispatch))
 }
 
 var ProductContainer = connect(mapStateToProps, mapDispatchToProps)(Product)

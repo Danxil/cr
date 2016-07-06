@@ -1,1 +1,1 @@
-export {ProductsReducer as products} from './ProductsReducer'
+export {MarketReducer as market} from './MarketReducer'

@@ -51,5 +51,17 @@ export default class Routes {
       path: '/api/user/{userId}/products',
       handler: usersCtrl.getUserProducts.bind(usersCtrl),
     });
+
+    server.route({
+      method: 'POST',
+      path: '/api/user/{userId}/products/{productId}',
+      handler: usersCtrl.addUserProduct.bind(usersCtrl),
+    });
+
+    server.route({
+      method: 'DELETE',
+      path: '/api/user/{userId}/products/{productId}',
+      handler: usersCtrl.removeUserProduct.bind(usersCtrl),
+    });
   }
 }

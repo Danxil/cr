@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {IAddProductToCartActionCreator} from '../actions/CartActions';
+import {IAddProductToCartActionCreator, IRemoveProductFromCartActionCreator} from '../actions/CartActions';
 import {IProduct} from '../../models/Product';
 import {RouteComponentProps} from 'react-router';
+import {IProductContainerOwnProps} from '../containers/ProductContainer';
 
 interface IProductRouteParams {
 }
@@ -10,22 +11,29 @@ export interface IProductState {
 }
 
 export interface IProductProps extends RouteComponentProps<IProductRouteParams, any> {
-  product:IProduct
   addProductToCart():IAddProductToCartActionCreator
+  removeProductFromCart():IRemoveProductFromCartActionCreator
 }
 
-export class Product extends React.Component<IProductProps, IProductState> {
-  constructor(public props:IProductProps) {
+export class Product extends React.Component<IProductProps & IProductContainerOwnProps, IProductState> {
+  constructor(public props:IProductProps & IProductContainerOwnProps) {
     super()
   }
 
   render() {
     var product:IProduct = this.props.product
 
+    var buttons = <div>
+      {!this.props.cartMode ?
+        <button onClick={this.props.addProductToCart}>Add to cart</button> :
+        <button onClick={this.props.removeProductFromCart}>Remove form cart</button>
+      }
+    </div>
+
     return (
       <div>
         <p>{product.name}</p>
-        <button onClick={this.props.addProductToCart}>Add to cart</button>
+        {!this.props.hideButtons ? buttons : ''}
       </div>
     )
   }

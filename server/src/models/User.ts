@@ -6,6 +6,8 @@ export interface IUser {
   id?
   name:string
   getProducts?():IPromise<IProduct[]>
+  addProduct?(product:IProduct):IPromise<IProduct[]>
+  removeProduct?(product:IProduct):IPromise<IProduct[]>
 }
 
 export default function(sequelize:Sequelize, DataTypes:DataTypes) {

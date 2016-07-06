@@ -6,8 +6,23 @@ export class CartAPI {
   constructor(private prefix:string) {
   }
   
-  addProductToCart(productId) {
-    return fetch(this.prefix + '/cart/product/' + productId)
+  addProductToCart(productId:string) {
+    //hardcode
+    return fetch(this.prefix + '/user/1/products/' + productId, {
+      method: 'POST',
+    })
+  }
+
+  getProductsInCart() {
+    //hardcode
+    return fetch(this.prefix + '/user/1/products')
+  }
+
+  removeProductFromCart(productId:string) {
+    //hardcode
+    return fetch(this.prefix + '/user/1/products/' + productId, {
+      method: 'DELETE',
+    })
   }
 
   static getInstance(...args) {

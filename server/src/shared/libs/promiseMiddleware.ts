@@ -12,13 +12,18 @@ export default function promiseMiddleware() {
     next(Object.assign({}, action, {type: REQUEST}));
 
     return promise.then((res)=> {
+      if (res.status >= 400) {
+        throw new Error('Bad response from server');
+      }
+
       return res.json()
     })
       .then((result:any)=> {
         next(Object.assign({}, action, {result, type: SUCCESS}))
 
         return true
-      }).catch((error)=> {
+      })
+      .catch((error)=> {
         next(Object.assign({}, action, {error, type: FAILURE}))
 
         return false

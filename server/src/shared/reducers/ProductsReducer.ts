@@ -8,11 +8,10 @@ export function ProductsReducer(state = defaultState, action:any) {
   switch (action.type) {
     case 'GET_PRODUCTS_SUCCESS': {
       let products:IProduct[] = (<IGetProductsSuccessAction>action).result
-
       return _.unionBy(state, products, 'id')
     }
 
-    case 'CREATE_PRODUCT': {
+    case 'CREATE_PRODUCT_SUCCESS': {
       return [].concat(state, (<ICreateProductAction>action).product)
     }
 

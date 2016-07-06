@@ -1,7 +1,6 @@
 import * as baseActionCreator from './index'
 import {IProduct} from '../../models/Product';
 import {IPromise} from 'hapi';
-import * as fetch from 'isomorphic-fetch';
 import {productsAPI} from '../api'
 
 
