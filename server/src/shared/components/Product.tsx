@@ -23,12 +23,11 @@ export class Product extends React.Component<IProductProps & IProductContainerOw
   render() {
     var product:IProduct = this.props.product
 
-    var buttons = <div>
-      {!this.props.cartMode ?
-        <button onClick={this.props.addProductToCart}>Add to cart</button> :
+    var buttons = <div>{
+        !this.props.cartMode ?
+          !this.props.inCart ? <button onClick={this.props.addProductToCart}>Add to cart</button> : 'Already in cart' :
         <button onClick={this.props.removeProductFromCart}>Remove form cart</button>
-      }
-    </div>
+      }</div>
 
     return (
       <div>

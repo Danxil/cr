@@ -15,6 +15,7 @@ class App extends React.Component<void, void> {
         <Link to="/">Home</Link> <Link to="/products">Products</Link> <Link to="/cart">Cart</Link>
         <CartWidgetContainer />
         <hr/>
+        Welcome!
         {this.props.children}
       </div>
     )

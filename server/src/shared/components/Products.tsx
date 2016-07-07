@@ -5,6 +5,7 @@ import {
 import {IProduct} from '../../models/Product';
 import {RouteComponentProps} from 'react-router';
 import ProductContainer from '../containers/ProductContainer';
+import {IProductWrapper} from '../selectors/productsInCartSelector';
 
 interface IProductRouteParams {
 }
@@ -13,7 +14,7 @@ export interface IProductsState {
 }
 
 export interface IProductsProps extends RouteComponentProps<IProductRouteParams, any> {
-  products:IProduct[]
+  productWrappers:IProductWrapper[]
   getProducts:IGetProductsActionCreator
   createProduct:ICreateProductActionCreator
   deleteProduct:IDeleteProductActionCreator
@@ -30,15 +31,15 @@ export class Products extends React.Component<IProductsProps, IProductsState> {
   }
 
   render() {
-    var {products} = this.props
+    var {productWrappers} = this.props
 
     return (
       <div>
         <strong>Products !1111111111</strong>
         <ul>
-          {products.map((product:IProduct)=>{
-            return <li key={product.id}>
-              <ProductContainer product={product} />
+          {productWrappers.map((productWrapper:IProductWrapper)=>{
+            return <li key={productWrapper.product.id}>
+              <ProductContainer inCart={productWrapper.inCart} product={productWrapper.product} />
             </li>
           })}
         </ul>

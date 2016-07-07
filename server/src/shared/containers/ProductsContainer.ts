@@ -1,6 +1,6 @@
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {ProductsActionCreators} from '../actions'
+import {ProductsActionCreators} from '../actions/index'
 import {Products} from '../components/Products'
 import {productsInCartSelector} from '../selectors/productsInCartSelector'
 
@@ -11,7 +11,7 @@ var PRELOAD = (params?, query?)=> {
 }
 
 function mapStateToProps(state) {
-  return {products: productsInCartSelector(state.market)}
+  return {productWrappers: productsInCartSelector(state.market)}
 }
 
 function mapDispatchToProps(dispatch) {

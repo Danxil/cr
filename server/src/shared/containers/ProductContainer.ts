@@ -1,7 +1,7 @@
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {Product} from '../components/Product'
-import {CartActionCreators} from '../actions'
+import {CartActionCreators} from '../actions/index'
 import {IProduct} from '../../models/Product';
 
 export interface IProductContainerOwnProps {
