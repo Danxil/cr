@@ -1,6 +1,6 @@
 import * as baseActionCreator from './index'
 import {IPromise} from 'hapi';
-import {cartAPI} from '../api'
+import {cartAPI} from '../api/index'
 
 export interface IGetProductsInCartAction extends baseActionCreator.IActionBase {
   type:string

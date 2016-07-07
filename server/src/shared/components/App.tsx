@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import {CartWidgetContainer} from '../containers/CartWidgetContainer';
 
 class App extends React.Component<void, void> {
-  static preload = CartWidgetContainer.preload
+  static preload = CartWidgetContainer['preload']
 
   constructor(public props) {
     super();

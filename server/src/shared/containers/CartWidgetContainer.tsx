@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {CartActionCreators, IGetProductsInCartActionCreator} from '../actions'
+import {CartActionCreators, IGetProductsInCartActionCreator} from '../actions/CartActions'
 import {IProduct} from '../../models/Product';
 
 var PRELOAD = (params?, query?)=> {
@@ -32,7 +32,7 @@ export interface ICartWidgetProps {
 }
 
 class CartWidget extends React.Component<ICartWidgetProps, ICartWidgetState> {
-  constructor(private props:ICartWidgetProps) {
+  constructor(public props:ICartWidgetProps) {
     super();
 
     if (typeof window != 'undefined') {

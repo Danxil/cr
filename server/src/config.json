@@ -1,5 +1,5 @@
 {
   "dbConfig": {
-    "url": "postgresql://products:products@localhost:5432/products"
+    "url": "postgresql://market:market@localhost:5432/market"
   }
 }

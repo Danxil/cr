@@ -18,12 +18,12 @@ var tsPaths = [
 var serverTsPaths = tsPaths.concat(['!' + webpackConfig.entry])
 
 gulp.task('default', [
-  'dev',
+  'build',
   'copy:watch',
   'views:watch'
 ]);
 
-gulp.task('dev', [
+gulp.task('build', [
   'views',
   'copy'
 ]);

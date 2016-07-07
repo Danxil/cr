@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "boom": "^3.2.1",
+    "chai": "^3.5.0",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-load-plugins": "^1.2.4",
@@ -37,12 +38,18 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^3.0.1"
+    "concurrently": "^2.2.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "nodemon": "^1.9.2",
+    "tsd": "^0.6.5"
   },
   "scripts": {
     "test": "cd ./dist && ../node_modules/lab/bin/lab ./tests/index.js",
-    "build": "gulp clean && gulp & webpack -w & tsc -w",
-    "start": "cd ./dist && nodemon server.js --ext js,html"
+    "dev": "node ./node_modules/gulp/bin/gulp.js clean && node ./node_modules/concurrently/src/main.js \"node ./node_modules/gulp/bin/gulp.js default\"  \"node ./node_modules/webpack/bin/webpack.js -w\"  \"node ./node_modules/typescript/bin/tsc -w\"",
+    "build": "node ./node_modules/gulp/bin/gulp.js clean build && node ./node_modules/webpack/bin/webpack.js && node ./node_modules/typescript/bin/tsc",
+    "install": "node ./node_modules/tsd/build/cli.js install",
+    "start-dev": "cd ./dist && node ../node_modules/nodemon/bin/nodemon.js server.js --ext js,html",
+    "start": "cd ./dist && node server.js --ext js,html"
   },
   "author": "",
   "license": "ISC"
