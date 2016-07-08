@@ -11,4 +11,4 @@ Instalation:
 
 Done
 
-PS: Errors in provser like "bundle.js:1248 Warning: Unknown prop `avatar` on <div> tag. Remove this prop from the elemen." will be fixed in nex version http://www.material-ui.com
+PS: Errors in provser like "bundle.js:1248 Warning: Unknown prop `avatar` on <div> tag. Remove this prop from the elemen." will be fixed in nex version https://github.com/callemall/material-ui
