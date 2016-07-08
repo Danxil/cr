@@ -3,6 +3,8 @@ import {IAddProductToCartActionCreator, IRemoveProductFromCartActionCreator} fro
 import {IProduct} from '../../models/Product';
 import {RouteComponentProps} from 'react-router';
 import {IProductContainerOwnProps} from '../containers/ProductContainer';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 interface IProductRouteParams {
 }
@@ -25,16 +27,19 @@ export class Product extends React.Component<IProductProps & IProductContainerOw
 
     var buttons = <div>{
         !this.props.cartMode ?
-          !this.props.inCart ? <button onClick={this.props.addProductToCart}>Add to cart</button> : 'Already in cart' :
-        <button onClick={this.props.removeProductFromCart}>Remove form cart</button>
+          !this.props.inCart ? <RaisedButton primary={true} label="Add to cart" onClick={this.props.addProductToCart}/> : '' :
+        <RaisedButton secondary ={true} onClick={this.props.removeProductFromCart} label="Remove form cart" />
       }</div>
 
-    return (
-      <div>
-        <p>{product.name}</p>
+    return <Card>
+      <CardHeader
+        title={product.name}
+        subtitle={this.props.inCart ? 'Already in cart' : ''}
+      />
+      <CardActions>
         {!this.props.hideButtons ? buttons : ''}
-      </div>
-    )
+      </CardActions>
+    </Card>
   }
 }
 

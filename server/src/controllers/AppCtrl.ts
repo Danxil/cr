@@ -6,6 +6,8 @@ import * as history from 'history';
 import * as Boom from 'boom';
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import promiseMiddleware from '../shared/libs/promiseMiddleware';
 import preloadsInit from '../libs/preloadsInit';
@@ -32,8 +34,14 @@ export default class AppCtrl extends BaseCtrl {
       var routerContext = React.createElement(RouterContext, renderProps)
       var provider = React.createElement(Provider, {store}, routerContext)
 
+      const muiTheme = getMuiTheme(null, {
+        userAgent: req.headers['user-agent'],
+      });
+
+      var muiProvider = React.createElement(MuiThemeProvider, {muiTheme}, provider);
+
       preloadsInit(renderProps, store.dispatch).then(()=> {
-        var app = ReactDOMServer.renderToString(provider)
+        var app = ReactDOMServer.renderToString(muiProvider)
         reply.view('index', {app, initialState: JSON.stringify(store.getState())});
       }).catch((error)=> {
         console.error(error)

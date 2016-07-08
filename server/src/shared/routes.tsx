@@ -7,7 +7,7 @@ import CartContainer from './containers/CartContainer';
 
 export default (
   <Route path="/" component={App}>
-    <Route path="products" component={ProductsContainer}></Route>
+    <IndexRoute component={ProductsContainer}></IndexRoute>
     <Route path="cart" component={CartContainer}></Route>
   </Route>
 );

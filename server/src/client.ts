@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import promiseMiddleware from './shared/libs/promiseMiddleware';
 import routes from './shared/routes';
@@ -20,8 +21,9 @@ var store = createStore(reducer, initialState, applyMiddleware(promiseMiddleware
 
 var router = React.createElement(Router, props);
 var provider = React.createElement(Provider, {store}, router);
+var muiProvider = React.createElement(MuiThemeProvider, null, provider);
 
 ReactDOM.render(
-  provider,
+  muiProvider,
   document.getElementById('react-container')
 )

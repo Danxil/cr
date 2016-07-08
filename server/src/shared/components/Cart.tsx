@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {RouteComponentProps} from "react-router";
+
 import {
   IGetProductsInCartActionCreator,
   IAddProductToCartActionCreator,
@@ -30,18 +31,13 @@ export class Cart extends React.Component<ICartProps, ICartState> {
   render() {
     var {cart} = this.props
 
-    return (
-      <div>
-        <strong>Cart !1111111111</strong>
-        <ul>
-          {cart.map((product:IProduct)=> {
-            return <li key={product.id}>
-              <ProductContainer product={product} cartMode={true} />
-            </li>
-          })}
-        </ul>
-      </div>
-    )
+    return <div>
+      {cart.map((product:IProduct)=> {
+        return <div key={product.id}>
+          <ProductContainer product={product} cartMode={true} />
+        </div>
+      })}
+    </div>
   }
 }
 

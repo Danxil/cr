@@ -1,8 +1,13 @@
 import * as React from 'react';
+import {Link} from 'react-router';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {CartActionCreators, IGetProductsInCartActionCreator} from '../actions/CartActions'
 import {IProduct} from '../../models/Product';
+import Badge from 'material-ui/Badge';
+import IconButton from 'material-ui/IconButton';
+import ShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart';
+
 
 var PRELOAD = (params?, query?)=> {
   return [
@@ -41,10 +46,14 @@ class CartWidget extends React.Component<ICartWidgetProps, ICartWidgetState> {
   }
 
   render() {
-    return <div>
-      <strong>Cart widget !1111111111</strong>
-      Cart length: {this.props.cart.length}
-    </div>
+    return <Link to="/cart">
+      <Badge
+        badgeContent={this.props.cart.length}
+        badgeStyle={{top: 10}}
+        primary={true}>
+        <ShoppingCartIcon />
+      </Badge>
+    </Link>
   }
 }
 

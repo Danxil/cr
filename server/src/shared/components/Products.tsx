@@ -33,18 +33,13 @@ export class Products extends React.Component<IProductsProps, IProductsState> {
   render() {
     var {productWrappers} = this.props
 
-    return (
-      <div>
-        <strong>Products !1111111111</strong>
-        <ul>
-          {productWrappers.map((productWrapper:IProductWrapper)=>{
-            return <li key={productWrapper.product.id}>
-              <ProductContainer inCart={productWrapper.inCart} product={productWrapper.product} />
-            </li>
-          })}
-        </ul>
-      </div>
-    )
+    return <div>
+      {productWrappers.map((productWrapper:IProductWrapper)=>{
+        return <div key={productWrapper.product.id}>
+          <ProductContainer inCart={productWrapper.inCart} product={productWrapper.product} />
+        </div>
+      })}
+    </div>
   }
 }
 
