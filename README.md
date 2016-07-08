@@ -1,4 +1,5 @@
 Instalation:
+
 1. Install postgress db
 2. Install NodeJS v5.5.0
 3. Create db "market" with owner "market" which have password "market"
