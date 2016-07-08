@@ -6,8 +6,9 @@ Instalation:
 4. Clone this project
 5. From cmd(windows) or terminal(unix) go to /{{yourPathToProject}}/server/
 6. Run "npm install" and wait for finish
-7. Run "npm start"
-8. Open browser and go to http://localhost:5000
+7. Run "npm build" and wait for finish
+8. Run "npm start"
+9. Open browser and go to http://localhost:5000
 
 Done
 
